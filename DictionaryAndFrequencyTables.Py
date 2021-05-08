@@ -77,3 +77,24 @@ for key in content_ratings:
     
     percentage = proportion*100 
     c_ratings_percentages[key] = percentage # Assign percentage dictionary value to corresponding key in c_ratings_percentages
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Find the max and min byte size of all apps listed in the iOS store. 
+
+opened_file = open('AppleStore.csv')
+from csv import reader
+read_file = reader(opened_file)
+apps_data = list(read_file)
+
+data_sizes = [] # Create an empty data_sizes list
+
+for row in apps_data[1:]:
+    size = float(row[2]) # Assign the byte size of each app from apps_data to the size variable as a float
+    data_sizes.append(size) # Append the size variable to the data_sizes list
+
+min_size = min(data_sizes)
+max_size = max(data_sizes)
+
+

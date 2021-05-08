@@ -81,20 +81,45 @@ for key in content_ratings:
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Find the max and min byte size of all apps listed in the iOS store. 
+# Find the max and min of the total user ratings for all apps listed in the iOS store. 
+# Based on the max and min value, choose 5 intervals to base your frequency table off of. 
+# Store the frequency table in a dictionary.
 
 opened_file = open('AppleStore.csv')
 from csv import reader
 read_file = reader(opened_file)
 apps_data = list(read_file)
 
-data_sizes = [] # Create an empty data_sizes list
+total_ratings_list = [] # Create an empty total ratings list
 
 for row in apps_data[1:]:
-    size = float(row[2]) # Assign the byte size of each app from apps_data to the size variable as a float
-    data_sizes.append(size) # Append the size variable to the data_sizes list
+    total_ratings = int(row[5]) # Assign the total user ratings of each app from apps_data to the total_ratings variable as an int
+    total_ratings_list.append(total_ratings) # Append the total_ratings variable to total_ratings_list
 
-min_size = min(data_sizes)
-max_size = max(data_sizes)
+min_total_ratings = min(total_ratings_list)
+max_total_ratings = max(total_ratings_list)
+
+# Create total ratings dictionary 
+total_ratings_dict = {'0 - 10000': 0, '10000 - 100000': 0, '100000 - 500000': 0, '500000 - 1000000': 0, '1000000+': 0} 
+
+# Populate the dictionary values of the total ratings dictionary 
+for row in apps_data[1:]:
+    user_ratings = int(row[5])
+    
+    if user_ratings <= 10000:
+        user_ratings_freq['0 - 10000'] += 1
+        
+    elif 10000 < user_ratings <= 100000:
+        user_ratings_freq['10000 - 100000'] += 1
+        
+    elif 100000 < user_ratings <= 500000:
+        user_ratings_freq['100000 - 500000'] += 1
+        
+    elif 500000 < user_ratings <= 1000000:
+        user_ratings_freq['500000 - 1000000'] += 1
+        
+    elif user_ratings > 1000000:
+        user_ratings_freq['1000000+'] += 1
+
 
 

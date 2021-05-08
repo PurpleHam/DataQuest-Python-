@@ -107,19 +107,19 @@ for row in apps_data[1:]:
     user_ratings = int(row[5])
     
     if user_ratings <= 10000:
-        user_ratings_freq['0 - 10000'] += 1
+        total_ratings_dict['0 - 10000'] += 1
         
     elif 10000 < user_ratings <= 100000:
-        user_ratings_freq['10000 - 100000'] += 1
+        total_ratings_dict['10000 - 100000'] += 1
         
     elif 100000 < user_ratings <= 500000:
-        user_ratings_freq['100000 - 500000'] += 1
+        total_ratings_dict['100000 - 500000'] += 1
         
     elif 500000 < user_ratings <= 1000000:
-        user_ratings_freq['500000 - 1000000'] += 1
+        total_ratings_dict['500000 - 1000000'] += 1
         
     elif user_ratings > 1000000:
-        user_ratings_freq['1000000+'] += 1
+        total_ratings_dict['1000000+'] += 1
 
 
 
